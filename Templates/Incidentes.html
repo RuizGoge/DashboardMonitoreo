@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            ¡Error!
+        </div>
+    {% endif %}
+
+    <h1>Insertar un Incidente</h1>
+
+    <form action="{% url 'guardarIncidente' %}" method="post">
+          {% csrf_token %}
+          {% if mensaje %}
+            <div class="alert alert-success" role="alert">
+            ¡OK!
+            </div>
+            {% endif %}
+
+            {{ form|crispy }}
+        <p></p>
+        <button type="submit" class="btn btn-secondary">Insertar</button>
+        <a class="btn btn-warning" href="{% url 'listarIncidentes' %}">Cancelar</a>
+
+    </form>
+
+{% endblock %}
+
+
+

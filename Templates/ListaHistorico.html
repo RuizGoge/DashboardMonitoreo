@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-12 row justify-content-center mb-2 pr-0">
+
+       <h2 class="col-md-4">Proceso diario</h2>
+
+</div>
+        <p></p>
+
+        <div class="col-12 row justify-content-end mb-1 pr-0">
+            <a class="btn btn-success col-md-2" href="{% url 'insertarHistorico' %}">Agregar nuevo</a>
+
+        </div>
+        <p></p>
+    <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID de Ejecucion</th>
+              <th scope="col">ID del Proceso</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for proceso in historico %}
+              <tr>
+                  <th scope="row">{{ proceso.ID_DETALLE_EJECUCION }}</th>
+                  <td>{{ proceso.ID_PROCESO_id }}</td>
+                  <td>{{ proceso.FECHA }}</td>
+                  <td>{{ proceso.ESTADO_EJECUCION }}</td>
+              </tr>
+          {% endfor %}
+
+          </tbody>
+    </table>
+
+{% endblock %}

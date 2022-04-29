@@ -1,0 +1,19 @@
+  *Views*
+
+class FormularioEjecucionHoyView(HttpRequest):
+
+    def index(request):
+        ejecucionhoy = FormularioEjecucionHoy()
+        return render(request, 'EjecucionHoy.html', {'form': ejecucionhoy})
+
+    def procesar_formulario(request):
+        ejecucionhoy = FormularioEjecucionHoy(request.POST)
+        if ejecucionhoy.is_valid():
+            ejecucionhoy.save()
+            ejecucionhoy = FormularioEjecucionHoy()
+
+        return render(request, 'EjecucionHoy.html', {'form': ejecucionhoy, 'mensaje': 'OK'})
+
+    def listar_ejecuciones(request):
+        ejecuciones = EjecucionHoy.objects.all()
+        return render(request, "ListaEjecuciones.html", {"ejecuciones": ejecuciones})

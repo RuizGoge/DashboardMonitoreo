@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-12 row justify-content-center mb-2 pr-0">
+
+       <h2 class="col-md-4">Procesos</h2>
+
+</div>
+        <p></p>
+
+        <div class="col-12 row justify-content-end mb-1 pr-0">
+            <a class="btn btn-success col-md-2" href="{% url 'insertarProceso' %}">Agregar nuevo</a>
+        </div>
+        <p></p>
+    <table class="table table-responsive table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Tipo de Proceso</th>
+              <th scope="col">Hora de ejecucion</th>
+              <th scope="col">Periodicidad</th>
+              <th scope="col">Servidor</th>
+              <th scope="col">Activo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for proceso in procesos %}
+              <tr>
+                  <th scope="row">{{ proceso.ID_PROCESO }}</th>
+                  <td>{{ proceso.NOMBRE_PROCESO }}</td>
+                  <td>{{ proceso.TIPO_PROCESO }}</td>
+                  <td>{{ proceso.HORA_EJECUCION }}</td>
+                  <td>{{ proceso.PERIODICIDAD }}</td>
+                  <td>{{ proceso.SERVIDOR }}</td>
+                  <td>{{ proceso.ACTIVO }}</td>
+              </tr>
+          {% endfor %}
+
+          </tbody>
+    </table>
+
+{% endblock %}
+

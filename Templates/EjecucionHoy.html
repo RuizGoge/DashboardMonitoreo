@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            Error!
+        </div>
+    {% endif %}
+
+    <h1>Registrar los procesos de hoy</h1>
+
+    <form action="{% url 'guardarEjecucion' %}" method="post">
+          {% csrf_token %}
+          {% if mensaje %}
+            <div class="alert alert-success" role="alert">
+            OK!
+            </div>
+            {% endif %}
+
+            {{ form|crispy }}
+
+<p></p>
+        <button type="submit" class="btn btn-primary">Insertar</button>
+    </form>
+
+{% endblock %}
+

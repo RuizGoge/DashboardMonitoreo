@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-12 row justify-content-center mb-2 pr-0">
+
+       <h2 class="col-md-4">Incidentes</h2>
+
+</div>
+        <p></p>
+            {% if mensaje %}
+            <div class="alert alert-success" role="alert">
+            ¡Incidente eliminado exitosamente!
+            </div>
+            {% endif %}
+
+        <div class="col-12 row justify-content-end mb-1 pr-0">
+            <a class="btn btn-success col-md-2" href="{% url 'insertarIncidente' %}">Agregar nuevo</a>
+        </div>
+        <p></p>
+    <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID del Incidente</th>
+              <th scope="col">ID de la ejecución</th>
+              <th scope="col">Problema</th>
+              <th scope="col">Causa</th>
+              <th scope="col">Impacto</th>
+              <th scope="col">Solución</th>
+              <th scope="col">Fecha y hora de solución</th>
+              <th scope="col">Resolutor</th>
+              <th scope="col">Fecha y hora de reejecución</th>
+              <th scope="col">Estado</th>
+              <th scope="col"></th>
+<!--              <th scope="col"></th>-->
+            </tr>
+          </thead>
+          <tbody>
+            {% for incidente in incidentes %}
+              <tr>
+                  <th scope="row">{{ incidente.ID_INCIDENTE }}</th>
+                  <td>{{ incidente.ID_DETALLE_EJECUCION_id }}</td>
+                  <td>{{ incidente.PROBLEMA }}</td>
+                  <td>{{ incidente.CAUSA }}</td>
+                  <td>{{ incidente.IMPACTO }}</td>
+                  <td>{{ incidente.SOLUCION }}</td>
+                  <td>{{ incidente.FECHA_HORA_SOLUCION }}</td>
+                  <td>{{ incidente.RESOLUTOR }}</td>
+                  <td>{{ incidente.FECHA_HORA_REEJECUCION }}</td>
+                  <td>{{ incidente.ESTADO_REEJECUCION }}</td>
+                  <td><a class="btn btn-warning" href="{% url 'editarIncidente' incidente.ID_INCIDENTE %}">Editar</a></td>
+<!--                  <td><a class="btn btn-warning" href="{% url 'eliminarIncidente' incidente.ID_INCIDENTE %}">Eliminar</a></td>-->
+              </tr>
+          {% endfor %}
+
+          </tbody>
+    </table>
+
+{% endblock %}
+
